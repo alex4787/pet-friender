@@ -3,10 +3,26 @@ import * as data from '../assets/fake-data.json'
 import { DogCard } from '../components/dogCard'
 import { SafeAreaView, FlatList, StyleSheet, StatusBar, Text, View } from 'react-native';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
-export const Match = () => {
+export const Match = ({ addToMatchList }) => {
 	return (
-		<ListItem text="Hello"/>
+    <Swipeable
+      renderLeftActions={leftSwipeActions}
+      renderRightActions={rightSwipeActions}
+      onSwipeableLeftOpen={swipeFromLeftOpen}
+    >
+      <View
+        style={{
+          paddingHorizontal: 30,
+          paddingVertical: 20,
+          backgroundColor: 'white',
+          height: 700,
+        }}
+      >
+        <DogCard />
+      </View>
+    </Swipeable>
 	)
 };
 
@@ -15,71 +31,22 @@ const leftSwipeActions = () => {
     <View
       style={{ flex: 1, backgroundColor: '#ccffbd', justifyContent: 'center' }}
     >
-      <Text
-        style={{
-          color: '#40394a',
-          paddingHorizontal: 10,
-          fontWeight: '600',
-          paddingHorizontal: 30,
-          paddingVertical: 20,
-        }}
-      >
-        Bookmark
-      </Text>
+      <Ionicons name="checkmark-outline" size={20} />
     </View>
   );
 };
 const rightSwipeActions = () => {
   return (
     <View
-      style={{
-        backgroundColor: '#ff8303',
-        justifyContent: 'center',
-        alignItems: 'flex-end',
-      }}
+      style={{ flex: 1, backgroundColor: '#ff8303', justifyContent: 'center' }}
     >
-      <Text
-        style={{
-          color: '#1b1a17',
-          paddingHorizontal: 10,
-          fontWeight: '600',
-          paddingHorizontal: 30,
-          paddingVertical: 20,
-        }}
-      >
-        Delete
-      </Text>
+      <Ionicons name="close-outline" size={20} />
     </View>
   );
 };
 const swipeFromLeftOpen = () => {
   alert('Swipe from left');
 };
-const swipeFromRightOpen = () => {
-  alert('Swipe from right');
-};
-const ListItem = ({ text }) => (
-  <Swipeable
-    renderLeftActions={leftSwipeActions}
-    renderRightActions={rightSwipeActions}
-    onSwipeableRightOpen={swipeFromRightOpen}
-    onSwipeableLeftOpen={swipeFromLeftOpen}
-  >
-    <View
-      style={{
-        paddingHorizontal: 30,
-        paddingVertical: 20,
-        backgroundColor: 'white',
-        height: 700,
-      }}
-    >
-      <Text style={{ fontSize: 24 }} style={{ fontSize: 20 }}>
-        {text}
-      </Text>
-    </View>
-  </Swipeable>
-);
-
 const styles = StyleSheet.create({
 	match: {
 		flex: 1,

@@ -19,6 +19,24 @@ const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
+const MATCH_LIST = [
+    {
+      name: 'Lomta',
+      avatar_url: 'https://i.pinimg.com/736x/be/e2/c4/bee2c48ef1b4d655afbd9df08b4c6e09.jpg',
+      dog_name: 'Meelo',
+      playdate: false,
+      mating: true
+    },
+    {
+      name: 'Alex',
+      avatar_url: 'https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp',
+      dog_name: 'Pickles',
+      playdate: true,
+      mating: false
+
+    },
+  ]
+
 
 export default function App() {
 
@@ -26,7 +44,7 @@ export default function App() {
   return (
     <NavigationContainer>
 				<Stack.Navigator screenOptions={{ headerShown: false }}>
-					<Stack.Screen name="Login" component={Login} />
+					<Stack.Screen name="Login" children={Login} />
 				  <Stack.Screen name="Register" component={Register} />
 				  <Stack.Screen name="Dog Information" component={AddDog} />
 				  <Stack.Screen name="Home" component={HomeScreen} />
@@ -136,6 +154,11 @@ const HomeScreen = () => {
 }
 
 const MainScreen = ({ dog, navigation }) => {
+	const [matchList, setMatchList] = useState(MATCH_LIST);
+	const addToMatchList = (dog) => {
+		setMatchList(prevList => [...prevList, dog]);
+	}
+
 	const HeaderBar = ({ title, value }) => (
 		<Pressable style={styles.drawerOpener} onPress={() => navigation.openDrawer()}>
 			<Image
@@ -147,11 +170,11 @@ const MainScreen = ({ dog, navigation }) => {
 
 	return (
 		<Tab.Navigator screenOptions={{ headerLeft: (props) => <HeaderBar value={dog} {...props} /> }}>
-			<Tab.Screen name="Match" component={Match} options={{title: "Match", tabBarIcon:({ }) => (
+			<Tab.Screen name="Match" children={(props) => <Match addToMatchList={addToMatchList} {...props} />} options={{tabBarIcon:({ }) => (
 				<Ionicons name="flame-outline" size={20} />
 				)
 			}} />
-			<Tab.Screen name="Chat" component={Chat}  options={{tabBarIcon:({ }) => (
+			<Tab.Screen name="Chat" children={(props) => <Chat list={matchList} {...props} />}  options={{tabBarIcon:({ }) => (
 				<Ionicons name="chatbubbles-outline" size={20} />
 				)
 			}} />
