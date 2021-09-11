@@ -1,12 +1,11 @@
 import React from 'react';
-import MapView from 'react-native-maps';
+import MapView, {Marker} from 'react-native-maps';
 
 
 let markers = [{"lat":37.78825, "lon": -122.4324, "title": "rame", "description": "rameee"}]
 export const Map  = ({navigation}) => {
       
     return(
-
             <MapView
                 style={{
                     flex:1,
@@ -24,15 +23,17 @@ export const Map  = ({navigation}) => {
                     }}
                 >
                 
-                    {/* <Marker
+                    { markers.map((marker, index) => {
+                    <Marker
                         key={index}
                         coordinate = {{
-                            latitude: markers[0].latlng,
-                            longitude: markers[0].lon
+                            latitude: marker.lat,
+                            longitude: marker.lon
                         }}
-                        title={markers[0].title}
-                        description={markers[0].description}
-                    /> */}
+                        title={marker.title}
+                        description={marker.description}
+                    /> }
+                    )}
               
             </MapView>
     )
