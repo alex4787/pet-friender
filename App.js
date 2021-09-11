@@ -82,14 +82,6 @@ export default function App() {
   );
 };
 
-const HomeScreen = () => {
-	return (
-		<View style={styles.container}>
-			<Text>Hello world</Text>
-		</View>
-	)
-};
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
