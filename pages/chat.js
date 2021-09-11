@@ -12,7 +12,7 @@ export const Chat = ({ navigation, list }) =>{
       <Stack.Screen name="ChatList" children={props => <ChatList list={list} {...props} />} />
       {
         list.map(match => (
-          <Stack.Screen name={match.name} children={props => <ChatScreen name={match.name} {...props} /> } />
+          <Stack.Screen name={match.name} children={props => <ChatScreen match={match} {...props} /> } />
         ))
       }
     </Stack.Navigator>
@@ -24,10 +24,10 @@ const ChatList = ({ navigation, list }) => (
     {
       list.map((match, i) => (
         <ListItem key={i} bottomDivider onPress={() => navigation.navigate(match.name)}>
-          <Avatar source={{uri: match.avatar_url}} />
+          <Avatar rounded source={{uri: match.profilePictureUri}} />
           <ListItem.Content>
-            <ListItem.Title>{match.name}'s {match.dog_name}</ListItem.Title>
-            <ListItem.Subtitle>{match.dog_name}</ListItem.Subtitle>
+            <ListItem.Title>{match.name}'s {match.dogName}</ListItem.Title>
+            <ListItem.Subtitle>{match.dogName}</ListItem.Subtitle>
           </ListItem.Content>
         </ListItem>
       ))

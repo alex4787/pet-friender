@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useRef, useState } from 'react';
-import { StyleSheet, Text, View, Image, Button, TouchableOpacity, Pressable, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, Image, Button, TouchableOpacity, Pressable, TouchableHighlight, Modal } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -16,6 +16,7 @@ import { Calendar } from './pages/calendar';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import { Map } from './pages/map';
+import { ListItem, Avatar } from 'react-native-elements'
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -26,11 +27,11 @@ const RECOMMENDATION_LIST = [
       name: "Lomta",
 			id: 1,
 			profilePictureUri: "https://i.pinimg.com/736x/be/e2/c4/bee2c48ef1b4d655afbd9df08b4c6e09.jpg",
-			dogName: "Pickles",
+			dogName: "Meelo",
 			breed: "Bulldog",
 			age: "2018",
 			sex: "Male",
-			bio: "Hey, Pickles is here! I'm a playful, energetic, good looking, pickle lover, charming bulldog. I'm looking for a female bulldog to start a family!",
+			bio: "Hey, Meelo is here! I'm a playful, energetic, good looking, pickle lover, charming bulldog. I'm looking for a female bulldog to start a family!",
 			lookingFor: "Mating"
 		},
     {
@@ -64,15 +65,8 @@ export default function App() {
 };
 
 const HomeScreen = () => {
-	const dropdownItems = data.dogs.map(dog => (
-		{
-			label: dog.name,
-			value: dog,
-		}
-	))
 	const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(dropdownItems[0].value);
-  const [items, setItems] = useState(dropdownItems);
+  const [value, setValue] = useState(data.dogs[0]);
 
 	const SideBarLink = ({ onPress, text, icon }) => (
 		<Pressable onPress={onPress}>
@@ -89,21 +83,46 @@ const HomeScreen = () => {
 				style={styles.profilePicture}
 				source={{ uri: value.profilePictureUri }}
 			/>
-			<View style={{zIndex: 10}}>
-				<DropDownPicker
-					open={open}
-					value={value}
-					items={items}
-					setOpen={setOpen}
-					setValue={setValue}
-					setItems={setItems}
-					labelStyle={styles.h1}
-					dropDownContainerStyle={{ paddingLeft: -30, marginTop: 15, backgroundColor: "#eee" }}
-					style={{ marginLeft: 0, paddingLeft: 0, marginTop: 10, borderColor: "white" }}
-					zIndex={3}
-					disableBorderRadius={true}
-				/>
+			<View style={styles.centeredView}>
+				<Modal
+					animationType="fade"
+					transparent={true}
+					visible={open}
+					onRequestClose={() => {
+						Alert.alert("Modal has been closed.");
+						setOpen(!open);
+					}}
+				>
+					<View style={styles.centeredView}>
+						<View style={styles.modalView}>
+							<Text style={{...styles.h1, fontSize: 20}}>Your Dogs</Text>
+							{
+								data.dogs.map(dog => (
+									<Pressable onPress={() => {
+										setValue(dog);
+										setOpen(false);
+									}}>
+										<View style={{flexDirection: "row", alignItems: "center", marginLeft: 1, marginBottom: -10}}>
+											<Avatar rounded source={{uri: dog.profilePictureUri}} />
+											<Text style={styles.paragraph}>{dog.name}</Text>
+											{(value == dog) && <Ionicons name="checkmark-outline" />}
+										</View>
+									</Pressable>
+								))
+								}
+						</View>
+					</View>
+				</Modal>
 			</View>
+			<Pressable
+				style={{marginVertical: 15}}
+				onPress={() => setOpen(true)}
+			>
+				<View style={{flexDirection: "row", alignItems: "center", marginLeft: 1, marginBottom: -10}}>
+					<Text style={styles.h1}>{value.name}</Text>
+					<Ionicons name="chevron-down-outline" size={30} />
+				</View>
+			</Pressable>
 			<View style={{zIndex: -5}}>
 				<SideBarLink onPress={() => {navigation.navigate("Main")}} text="Home" icon={<Ionicons name="home-outline" size={30} />} />
 				<SideBarLink onPress={() => {navigation.navigate("DogProfile")}} text="Dog Profile" icon={<MaterialCommunityIcons name="dog" size={30} />} />
@@ -239,6 +258,46 @@ const styles = StyleSheet.create({
 	},
 	drawerOpener: {
 		marginLeft: 15
+	},
+	centeredView: {
+		flex: 1,
+		justifyContent: "center",
+		alignItems: "center",
+	},
+	modalView: {
+		margin: 20,
+		backgroundColor: "white",
+		borderRadius: 10,
+		padding: 20,
+		shadowColor: "#000",
+		shadowOffset: {
+			width: 0,
+			height: 2
+		},
+		shadowOpacity: 0.25,
+		shadowRadius: 4,
+		elevation: 5,
+		width: "90%"
+	},
+	button: {
+		borderRadius: 20,
+		padding: 10,
+		elevation: 2
+	},
+	buttonOpen: {
+		backgroundColor: "#F194FF",
+	},
+	buttonClose: {
+		backgroundColor: "#2196F3",
+	},
+	textStyle: {
+		color: "white",
+		fontWeight: "bold",
+		textAlign: "center"
+	},
+	modalText: {
+		marginBottom: 15,
+		textAlign: "center"
 	}
 });
 

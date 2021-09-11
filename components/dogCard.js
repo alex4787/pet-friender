@@ -16,7 +16,7 @@ export const DogCard = ({ dog, setFriction }) => {
     <View style={styles.container}>
       <Image
         style={styles.profilePicture}
-        source={dog.profilePictureUri}
+        source={{ uri: dog.profilePictureUri }}
       />
       <Text style={styles.h1}>{dog.dogName}</Text>
       <Text>Breed: {dog.breed}</Text>

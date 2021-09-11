@@ -1,20 +1,21 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import {GiftedChat} from 'react-native-gifted-chat';
+import { ListItem, Avatar } from 'react-native-elements'
 
-export const ChatScreen = ({ navigation, name }) => {
+export const ChatScreen = ({ navigation, match }) => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     setMessages([
       {
         _id: 1,
-        text: 'Hello developer',
+        text: 'Hey! Wanna organize a playdate this weekend?',
         createdAt: new Date(),
         user: {
           _id: 2,
           name: 'React Native',
-          avatar: 'https://placeimg.com/140/140/any',
+          avatar: match.profilePictureUri,
         },
       },
     ])
@@ -26,7 +27,6 @@ export const ChatScreen = ({ navigation, name }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.h1}>{name}</Text>
       <GiftedChat
         messages={messages}
         onSend={messages => onSend(messages)}
@@ -42,8 +42,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  title: {
+    padding: 20
+  },
 	h1: {
-    padding: 20,
 		fontWeight: "bold",
 		fontSize: 30,
 	},

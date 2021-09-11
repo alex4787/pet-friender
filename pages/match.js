@@ -30,7 +30,7 @@ export const Match = ({ recommendationList, addToMatchList }) => {
   };
   const swipeFromLeftOpen = () => {
     addToMatchList(recommendationList[dogIndex]);
-    alert(`${recommendationList[dogIndex].dog_name} has been added!`);
+    alert(`${recommendationList[dogIndex].name} has been added!`);
     setDogIndex(prev => prev + 1);
     swipeable.current.close();
   };
