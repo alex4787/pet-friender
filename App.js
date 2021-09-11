@@ -100,6 +100,7 @@ const HomeScreen = () => {
 			<View style={{zIndex: -5}}>
 				<SideBarLink onPress={() => {navigation.navigate("DogProfile")}} text="Dog Profile" icon={<MaterialCommunityIcons name="dog" size={30} />} />
         <SideBarLink onPress={() => {navigation.navigate("Calendar")}} text="My Calendar" icon={<Ionicons name="calendar" size={30} />} />
+        <SideBarLink onPress={() => {navigation.navigate("Map")}} text="Map" icon={<Ionicons name="map" size={30} />} />
         <SideBarLink onPress={() => {navigation.navigate("DogProfile")}} text="Settings" icon={<Ionicons name="cog-outline" size={30} />} />
 			</View>
     </View>
@@ -161,7 +162,8 @@ const HomeScreen = () => {
 	return (
 		<Drawer.Navigator drawerContent={navigationView}>
       <Drawer.Screen name="Main" children={(props) => <MainScreen dog={value} {...props}/>} options={{ headerShown: false }} />
-      <Drawer.Screen name="Calendar" component={Map} />
+      <Drawer.Screen name="Calendar" component={Calendar} />
+      <Drawer.Screen name="Map" component={Map} />
     </Drawer.Navigator>
 	)
 }
