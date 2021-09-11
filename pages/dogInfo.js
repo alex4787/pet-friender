@@ -13,7 +13,7 @@ export const AddDog  = () => {
   
     return(
         <SafeAreaView>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row', marginHorizontal:15, marginVertical:10}}>
                 <IconButton
                     icon="camera"
                     color={Colors.red500}
@@ -36,31 +36,37 @@ export const AddDog  = () => {
                 placeholder="Name"
                 onChangeText={onChangeName}
                 value={name}
+                style={{marginHorizontal:15, marginVertical:10}}
             />
             <TextInput 
                 placeholder="Breed"
                 onChangeText={onChangeBreed}
                 value={breed}
+                style={{marginHorizontal:15, marginVertical:10}}
             />
             <TextInput 
                 placeholder="Sex"
                 onChangeText={onChangeSex}
                 value={sex}
+                style={{marginHorizontal:15, marginVertical:10}}
             />
             <TextInput 
                 placeholder="Year of birth"
                 onChangeText={onChangeAge}
                 value={age}
+                style={{marginHorizontal:15, marginVertical:10}}
             />
             <TextInput 
                 placeholder="Bio"
                 onChangeText={onChangeBio}
                 value={bio}
                 multiline={true}
+                style={{marginHorizontal:15, marginVertical:10}}
             />
         
             <Button
                 title="Done"
+                style={{marginHorizontal:15, marginVertical:10}}
             />
         </SafeAreaView>
     )

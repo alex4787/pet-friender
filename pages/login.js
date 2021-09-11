@@ -12,18 +12,22 @@ export const Login  = ({navigation}) => {
                 placeholder="Email"
                 onChangeText={onChangeEmail}
                 value={email}
+                style={{marginHorizontal:15, marginVertical:10}}
             />
             <TextInput
                  secureTextEntry={true}
                  placeholder="Password"
                  onChangeText={onChangePassword}
                  value={password}
+                 style={{marginHorizontal:15, marginVertical:10}}
             />
             <Button
                 title="Log In"
+                style={{marginHorizontal:15, marginVertical:10}}
             />
   
             <TouchableOpacity
+                style={{marginHorizontal:15, marginVertical:10}}
                 onPress={()=>
                     navigation.navigate("Register")}>
               <Text>Don't you have an account? Click here to register!</Text>

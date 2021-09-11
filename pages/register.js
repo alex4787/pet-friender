@@ -17,19 +17,22 @@ export const Register  = ({navigation}) => {
                 placeholder="Username"
                 onChangeText={onChangeUsername}
                 value={username}
+                style={{marginHorizontal:15, marginVertical:10}}
             />
             <TextInput 
                 placeholder="Email"
                 onChangeText={onChangeEmail}
                 value={email}
+                style={{marginHorizontal:15, marginVertical:10}}
             />
             <TextInput
                  secureTextEntry={true}
                  placeholder="Password"
                  onChangeText={onChangePassword}
                  value={password}
+                 style={{marginHorizontal:15, marginVertical:10}}
             />
-            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row', marginHorizontal:15, marginVertical:10}}>
                 <IconButton
                     icon="plus"
                     color={Colors.red500}
@@ -50,6 +53,7 @@ export const Register  = ({navigation}) => {
             <Button
                 title="Register"
                 disabled={disabled}
+                style={{marginHorizontal:15, marginVertical:10}}
             />
         </SafeAreaView>
     )
