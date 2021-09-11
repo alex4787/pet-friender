@@ -15,8 +15,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Calendar } from './pages/calendar';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import { Marker } from 'react-native-maps';
-
+import { Map } from './pages/map';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -162,7 +161,7 @@ const HomeScreen = () => {
 	return (
 		<Drawer.Navigator drawerContent={navigationView}>
       <Drawer.Screen name="Main" children={(props) => <MainScreen dog={value} {...props}/>} options={{ headerShown: false }} />
-      <Drawer.Screen name="Calendar" component={Marker} />
+      <Drawer.Screen name="Calendar" component={Map} />
     </Drawer.Navigator>
 	)
 }
