@@ -10,6 +10,7 @@ import { AddDog } from './pages/dogInfo';
 import { DogMatches } from './pages/dogMatches';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as data from './assets/fake-data.json'
+import { Chat } from './pages/chat';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -28,6 +29,7 @@ export default function App() {
 					 <Stack.Screen name="Register" component={Register} />
 					 <Stack.Screen name="Dog Information" component={AddDog} />
 					 <Stack.Screen name="Home" component={HomeScreen} />
+           <Stack.Screen name="Chat" component={Chat} />
 				</Stack.Navigator>
     </NavigationContainer>
   );

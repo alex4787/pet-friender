@@ -23,6 +23,8 @@ export const Login  = ({navigation}) => {
             />
             <Button
                 title="Log In"
+                onPress={()=>
+                    navigation.navigate("Chat")}
                 style={{marginHorizontal:15, marginVertical:10}}
             />
   
