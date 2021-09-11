@@ -21,7 +21,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
-const MATCH_LIST = [
+const RECOMMENDATION_LIST = [
     {
       name: 'Lomta',
       avatar_url: 'https://i.pinimg.com/736x/be/e2/c4/bee2c48ef1b4d655afbd9df08b4c6e09.jpg',
@@ -98,6 +98,7 @@ const HomeScreen = () => {
 				/>
 			</View>
 			<View style={{zIndex: -5}}>
+				<SideBarLink onPress={() => {navigation.navigate("Main")}} text="Home" icon={<Ionicons name="home-outline" size={30} />} />
 				<SideBarLink onPress={() => {navigation.navigate("DogProfile")}} text="Dog Profile" icon={<MaterialCommunityIcons name="dog" size={30} />} />
         <SideBarLink onPress={() => {navigation.navigate("Calendar")}} text="My Calendar" icon={<Ionicons name="calendar" size={30} />} />
         <SideBarLink onPress={() => {navigation.navigate("DogProfile")}} text="Settings" icon={<Ionicons name="cog-outline" size={30} />} />
@@ -167,9 +168,10 @@ const HomeScreen = () => {
 }
 
 const MainScreen = ({ dog, navigation }) => {
-	const [matchList, setMatchList] = useState(MATCH_LIST);
-	const addToMatchList = (dog) => {
-		setMatchList(prevList => [...prevList, dog]);
+	const [matchList, setMatchList] = useState([]);
+	const [recommendationList, setRecommendationList] = useState(RECOMMENDATION_LIST);
+	const addToMatchList = (newDog) => {
+		setMatchList(prevList => [...prevList, newDog]);
 	}
 
 	const HeaderBar = ({ title, value }) => (
@@ -183,7 +185,7 @@ const MainScreen = ({ dog, navigation }) => {
 
 	return (
 		<Tab.Navigator screenOptions={{ headerLeft: (props) => <HeaderBar value={dog} {...props} /> }}>
-			<Tab.Screen name="Match" children={(props) => <Match matchList={matchList} addToMatchList={addToMatchList} {...props} />} options={{tabBarIcon:({ }) => (
+			<Tab.Screen name="Match" children={(props) => <Match recommendationList={recommendationList} addToMatchList={addToMatchList} {...props} />} options={{tabBarIcon:({ }) => (
 				<Ionicons name="flame-outline" size={20} />
 				)
 			}} />
