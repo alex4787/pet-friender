@@ -50,6 +50,9 @@ export const Register  = ({navigation}) => {
             <Button
                 title="Register"
                 disabled={disabled}
+								onPress={() => {
+										navigation.navigate("Home")
+								}}
             />
         </SafeAreaView>
     )

@@ -1,16 +1,39 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useRef, useState } from 'react';
-import { StyleSheet, Text, View, Image, DrawerLayoutAndroid, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, DrawerLayoutAndroid, Button, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Register } from './pages/register';
 import { Login } from './pages/login';
 import { AddDog } from './pages/dogInfo';
+import { DogMatches } from './pages/dogMatches';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import * as data from './assets/fake-data.json'
 
+const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
+
+  return (
+    <NavigationContainer>
+				<Stack.Navigator>
+					<Stack.Screen
+						name="Login"
+						component={Login}
+						options={{ title: 'Welcome' }}
+					/>
+					 <Stack.Screen name="Register" component={Register} />
+					 <Stack.Screen name="Dog Information" component={AddDog} />
+					 <Stack.Screen name="Home" component={HomeScreen} />
+				</Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+const HomeScreen = () => {
 	const drawer = useRef(null);
   const [drawerPosition, setDrawerPosition] = useState("left");
   const changeDrawerPosition = () => {
@@ -59,28 +82,73 @@ export default function App() {
 			*/}
     </View>
   );
+	const bottomTabBar = ({ state, descriptors, navigation }) => {
+		return (
+			<View style={{ flexDirection: 'row' }}>
+				{state.routes.map((route, index) => {
+					const { options } = descriptors[route.key];
+					const label =
+						options.tabBarLabel !== undefined
+							? options.tabBarLabel
+							: options.title !== undefined
+							? options.title
+							: route.name;
 
-  return (
-    <NavigationContainer>
-			<DrawerLayoutAndroid
-				ref={drawer}
-				drawerWidth={300}
-				drawerPosition={drawerPosition}
-				renderNavigationView={navigationView}
-			>
-				<Stack.Navigator>
-					<Stack.Screen
-						name="Login"
-						component={Login}
-						options={{ title: 'Welcome' }}
-					/>
-					 <Stack.Screen name="Register" component={Register} />
-					 <Stack.Screen name="Dog Information" component={AddDog} />
-				</Stack.Navigator>
-			</DrawerLayoutAndroid>
-    </NavigationContainer>
-  );
-};
+					const isFocused = state.index === index;
+
+					const onPress = () => {
+						const event = navigation.emit({
+							type: 'tabPress',
+							target: route.key,
+							canPreventDefault: true,
+						});
+
+						if (!isFocused && !event.defaultPrevented) {
+							// The `merge: true` option makes sure that the params inside the tab screen are preserved
+							navigation.navigate({ name: route.name, merge: true });
+						}
+					};
+
+					const onLongPress = () => {
+						navigation.emit({
+							type: 'tabLongPress',
+							target: route.key,
+						});
+					};
+
+					return (
+						<TouchableOpacity
+							accessibilityRole="button"
+							accessibilityState={isFocused ? { selected: true } : {}}
+							accessibilityLabel={options.tabBarAccessibilityLabel}
+							testID={options.tabBarTestID}
+							onPress={onPress}
+							onLongPress={onLongPress}
+							style={{ flex: 1 }}
+						>
+							<Text style={{ color: isFocused ? '#673ab7' : '#222' }}>
+								{label}
+							</Text>
+						</TouchableOpacity>
+					);
+				})}
+			</View>
+		);
+	}
+
+	return (
+		<DrawerLayoutAndroid
+			ref={drawer}
+			drawerWidth={300}
+			drawerPosition={drawerPosition}
+			renderNavigationView={navigationView}
+		>
+			<Tab.Navigator>
+				<Tab.Screen name="Matches" component={DogMatches} />
+			</Tab.Navigator>
+		</DrawerLayoutAndroid>
+	)
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -109,11 +177,3 @@ const styles = StyleSheet.create({
 	}
 });
 
-const data = {
-	dogs: [
-		{
-			profilePictureUri: "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2021%2F03%2F09%2Fdog-dating-1.jpg",
-			name: "Fluffy",
-		}
-	]
-}
