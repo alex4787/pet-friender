@@ -35,11 +35,14 @@ const MATCH_LIST = [
 		},
     {
       name: 'Alex',
-      avatar_url: 'https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp',
-      dog_name: 'Pickles',
-      playdate: true,
-      mating: false
-
+      id: 2,
+      profilePictureUri: 'https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp',
+      dogName: 'Pickles',
+      breed: "Bulldog",
+			age: "2018",
+			sex: "Male",
+			bio: "Hey, Pickles is here! I'm a playful, energetic, good looking, pickle lover, charming bulldog. I'm looking for a female bulldog to start a family!",
+			lookingFor: "Mating"
     },
   ]
 
