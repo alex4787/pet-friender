@@ -17,6 +17,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import { Map } from './pages/map';
 import { ListItem, Avatar } from 'react-native-elements'
+import { DogProfile } from './pages/dogProfile';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -190,6 +191,7 @@ const HomeScreen = () => {
 	return (
 		<Drawer.Navigator drawerContent={navigationView}>
       <Drawer.Screen name="Main" children={(props) => <MainScreen dog={value} {...props}/>} options={{ headerShown: false }} />
+      <Drawer.Screen name="DogProfile" children={(props) => <DogProfile dog={value} {...props}/>} options={{ title: value.name }} />
       <Drawer.Screen name="Calendar" component={Calendar} />
       <Drawer.Screen name="Map" component={Map} />
     </Drawer.Navigator>
