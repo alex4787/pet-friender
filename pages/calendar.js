@@ -17,7 +17,6 @@ export const Calendar  = ({navigation}) => {
           maxDate={'2022-05-30'}
           pastScrollRange={50}
           futureScrollRange={50}
-          //showClosingKnob={false}
            renderItem={(item, firstItemInDay) => 
            {return (
            <View>
