@@ -23,12 +23,16 @@ const Drawer = createDrawerNavigator();
 
 const MATCH_LIST = [
     {
-      name: 'Lomta',
-      avatar_url: 'https://i.pinimg.com/736x/be/e2/c4/bee2c48ef1b4d655afbd9df08b4c6e09.jpg',
-      dog_name: 'Meelo',
-      playdate: false,
-      mating: true
-    },
+      name: "Lomta",
+			id: 1,
+			profilePictureUri: "https://i.pinimg.com/736x/be/e2/c4/bee2c48ef1b4d655afbd9df08b4c6e09.jpg",
+			dogName: "Pickles",
+			breed: "Bulldog",
+			age: "2018",
+			sex: "Male",
+			bio: "Hey, Pickles is here! I'm a playful, energetic, good looking, pickle lover, charming bulldog. I'm looking for a female bulldog to start a family!",
+			lookingFor: "Mating"
+		},
     {
       name: 'Alex',
       avatar_url: 'https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp',
