@@ -3,12 +3,22 @@
 		{
 			"id": 0,
 			"profilePictureUri": "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2021%2F03%2F09%2Fdog-dating-1.jpg",
-			"name": "Fluffy"
+			"name": "Fluffy",
+			"breed": "Labrador",
+			"age": "2017",
+			"sex": "Female",
+			"bio": "Hi all! I'm Fluffy. I love going on long walks and chewing on my mom's shoes. Looking forward to playing with you!",
+			"lookingFor": "Playdates"
 		},
 		{
 			"id": 1,
 			"profilePictureUri": "https://ggsc.s3.amazonaws.com/images/uploads/The_Science-Backed_Benefits_of_Being_a_Dog_Owner.jpg",
-			"name": "Pickles"
+			"name": "Pickles",
+			"breed": "Bulldog",
+			"age": "2018",
+			"sex": "Male",
+			"bio": "Hey, Pickles is here! I'm a playful, energetic, good looking, pickle lover, charming bulldog. I'm looking for a female bulldog to start a family!",
+			"lookingFor": "Mating"
 		}
 	]
 }
