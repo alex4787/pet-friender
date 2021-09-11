@@ -69,32 +69,38 @@ const HomeScreen = () => {
 
 	const SideBarLink = ({ onPress, text, icon }) => (
 		<Pressable onPress={onPress}>
-			<View style={{flexDirection: "row", alignItems: "center", marginLeft: 5}}>
+			<View style={{flexDirection: "row", alignItems: "center", marginLeft: 1, marginBottom: -10}}>
 				{icon}
 				<Text style={styles.paragraph}>{text}</Text>
 			</View>
 		</Pressable>
 	)
 
-  const navigationView = () => (
+  const navigationView = ({navigation}) => (
     <View style={[styles.navigationContainer]}>
 			<Image
 				style={styles.profilePicture}
 				source={{ uri: value.profilePictureUri }}
 			/>
-			<DropDownPicker
-				open={open}
-				value={value}
-				items={items}
-				setOpen={setOpen}
-				setValue={setValue}
-				setItems={setItems}
-				labelStyle={styles.h1}
-				dropDownContainerStyle={{ paddingLeft: -30, marginTop: 15, backgroundColor: "#eee" }}
-				style={{ marginLeft: 0, paddingLeft: 0, marginTop: 10, borderColor: "white" }}
-				disableBorderRadius={true}
-			/>
-			<SideBarLink onPress={() => {}} text="Dog Profile" icon={<MaterialCommunityIcons name="dog" size={30} />} />
+			<View style={{zIndex: 10}}>
+				<DropDownPicker
+					open={open}
+					value={value}
+					items={items}
+					setOpen={setOpen}
+					setValue={setValue}
+					setItems={setItems}
+					labelStyle={styles.h1}
+					dropDownContainerStyle={{ paddingLeft: -30, marginTop: 15, backgroundColor: "#eee" }}
+					style={{ marginLeft: 0, paddingLeft: 0, marginTop: 10, borderColor: "white" }}
+					zIndex={3}
+					disableBorderRadius={true}
+				/>
+			</View>
+			<View style={{zIndex: -5}}>
+				<SideBarLink onPress={() => {navigation.navigate("DogProfile")}} text="Dog Profile" icon={<MaterialCommunityIcons name="dog" size={30} />} />
+				<SideBarLink onPress={() => {navigation.navigate("DogProfile")}} text="Settings" icon={<Ionicons name="cog-outline" size={30} />} />
+			</View>
     </View>
   );
 	const bottomTabBar = ({ state, descriptors, navigation }) => {
@@ -175,7 +181,7 @@ const MainScreen = ({ dog, navigation }) => {
 
 	return (
 		<Tab.Navigator screenOptions={{ headerLeft: (props) => <HeaderBar value={dog} {...props} /> }}>
-			<Tab.Screen name="Match" children={(props) => <Match addToMatchList={addToMatchList} {...props} />} options={{tabBarIcon:({ }) => (
+			<Tab.Screen name="Match" children={(props) => <Match matchList={matchList} addToMatchList={addToMatchList} {...props} />} options={{tabBarIcon:({ }) => (
 				<Ionicons name="flame-outline" size={20} />
 				)
 			}} />
