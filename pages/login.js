@@ -26,7 +26,7 @@ export const Login  = ({navigation}) => {
             <TouchableOpacity
                 onPress={()=>
                     navigation.navigate("Register")}>
-              <Text>Don't you have an account? Click here to</Text>
+              <Text>Don't you have an account? Click here to register!</Text>
             </TouchableOpacity>
      
         </SafeAreaView>
