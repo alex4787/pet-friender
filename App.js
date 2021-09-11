@@ -4,6 +4,9 @@ import { StyleSheet, Text, View, Image, DrawerLayoutAndroid, Button } from 'reac
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DropDownPicker from 'react-native-dropdown-picker';
+import { Register } from './pages/register';
+import { Login } from './pages/login';
+import { AddDog } from './pages/dogInfo';
 
 const Stack = createNativeStackNavigator();
 
@@ -67,10 +70,12 @@ export default function App() {
 			>
 				<Stack.Navigator>
 					<Stack.Screen
-						name="Home"
-						component={HomeScreen}
+						name="Login"
+						component={Login}
 						options={{ title: 'Welcome' }}
 					/>
+					 <Stack.Screen name="Register" component={Register} />
+					 <Stack.Screen name="Dog Information" component={AddDog} />
 				</Stack.Navigator>
 			</DrawerLayoutAndroid>
     </NavigationContainer>
