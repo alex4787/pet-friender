@@ -15,8 +15,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Calendar } from './pages/calendar';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import { Marker } from 'react-native-maps';
-
+import { Map } from './pages/map';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -102,6 +101,7 @@ const HomeScreen = () => {
 				<SideBarLink onPress={() => {navigation.navigate("Main")}} text="Home" icon={<Ionicons name="home-outline" size={30} />} />
 				<SideBarLink onPress={() => {navigation.navigate("DogProfile")}} text="Dog Profile" icon={<MaterialCommunityIcons name="dog" size={30} />} />
         <SideBarLink onPress={() => {navigation.navigate("Calendar")}} text="My Calendar" icon={<Ionicons name="calendar" size={30} />} />
+        <SideBarLink onPress={() => {navigation.navigate("Map")}} text="Map" icon={<Ionicons name="map" size={30} />} />
         <SideBarLink onPress={() => {navigation.navigate("DogProfile")}} text="Settings" icon={<Ionicons name="cog-outline" size={30} />} />
 			</View>
     </View>
@@ -163,7 +163,8 @@ const HomeScreen = () => {
 	return (
 		<Drawer.Navigator drawerContent={navigationView}>
       <Drawer.Screen name="Main" children={(props) => <MainScreen dog={value} {...props}/>} options={{ headerShown: false }} />
-      <Drawer.Screen name="Calendar" component={Marker} />
+      <Drawer.Screen name="Calendar" component={Calendar} />
+      <Drawer.Screen name="Map" component={Map} />
     </Drawer.Navigator>
 	)
 }
