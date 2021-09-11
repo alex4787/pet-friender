@@ -11,7 +11,7 @@ export const Chat = ({ list }) =>{
         <ListItem key={i} bottomDivider>
           <Avatar source={{uri: match.avatar_url}} />
           <ListItem.Content>
-            <ListItem.Title>{match.name}'s {match.dog_name}</ListItem.Title>
+            <ListItem.Title>{match.name}'s {match.dogName}</ListItem.Title>
             <ListItem.Subtitle>{match.dog_name}</ListItem.Subtitle>
           </ListItem.Content>
         </ListItem>
