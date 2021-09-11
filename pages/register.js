@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, TextInput, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TextInput, Button, TouchableOpacity, Image } from 'react-native';
 import { IconButton, Colors } from 'react-native-paper';
 
 let dogs = ['a']
@@ -13,11 +13,14 @@ export const Register  = ({navigation}) => {
     if (dogs.length > 0) disabled = false;
     return(
         <SafeAreaView>
+                <Image
+                source={require('../assets/doggo.png')}
+                style={{height:150, width:300, alignSelf:'center', marginTop:50}}/>
             <TextInput 
                 placeholder="Username"
                 onChangeText={onChangeUsername}
                 value={username}
-                style={{marginHorizontal:70, marginTop:120, textAlign:'center'}}
+                style={{marginHorizontal:70, marginTop:50, textAlign:'center'}}
             />
             <TextInput 
                 placeholder="Email"
@@ -47,7 +50,7 @@ export const Register  = ({navigation}) => {
                         disabled = false
                         navigation.navigate("Dog Information")
                     }}>
-                    <Text style={{marginVertical: 13}}>Add your dog information</Text>
+                    <Text style={{marginVertical: 13, alignSelf:'center'}}>Add your dog information</Text>
                 </TouchableOpacity>    
             </View>
             <Button
