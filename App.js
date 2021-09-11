@@ -11,6 +11,7 @@ import { Match } from './pages/match';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as data from './assets/fake-data.json'
 import { Chat } from './pages/chat';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -142,7 +143,14 @@ const HomeScreen = () => {
 			renderNavigationView={navigationView}
 		>
 			<Tab.Navigator>
-				<Tab.Screen name="Match" component={Match} />
+				<Tab.Screen name="Match" component={Match} options={{tabBarIcon:({ }) => (
+          <Ionicons name="flame-outline" size={20} />
+					)
+				}} />
+        <Tab.Screen name="Chat" component={Chat}  options={{tabBarIcon:({ }) => (
+          <Ionicons name="chatbubbles-outline" size={20} />
+					)
+				}} />
 			</Tab.Navigator>
 		</DrawerLayoutAndroid>
 	)
