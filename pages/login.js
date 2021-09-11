@@ -15,14 +15,14 @@ export const Login  = ({navigation}) => {
                 placeholder="Email"
                 onChangeText={onChangeEmail}
                 value={email}
-                style={{marginHorizontal:70, marginTop:100, textAlign:'center'}}
+                style={{marginHorizontal:70, marginTop:50, textAlign:'center'}}
             />
             <TextInput
                  secureTextEntry={true}
                  placeholder="Password"
                  onChangeText={onChangePassword}
                  value={password}
-                 style={{marginHorizontal:70, marginTop:25, marginBottom: 70, textAlign:'center'}}
+                 style={{marginHorizontal:70, marginTop:25, marginBottom: 50, textAlign:'center'}}
             />
             <Button
                 title="Log In"
