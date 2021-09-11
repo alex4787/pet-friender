@@ -9,7 +9,7 @@ export const AddDog  = ({navigation}) => {
     const [age, onChangeAge] = React.useState(null);
     const [sex, onChangeSex] = React.useState(null);
     const [bio, onChangeBio] = React.useState(null);
-    
+    const [lookingFor, onChangeLookingFor] = React.useState(null);
   
     return(
         <SafeAreaView>
@@ -54,6 +54,12 @@ export const AddDog  = ({navigation}) => {
                 placeholder="Year of birth"
                 onChangeText={onChangeAge}
                 value={age}
+                style={{marginHorizontal:15, marginTop:20,  textAlign:'center'}}
+            />
+            <TextInput 
+                placeholder="What are you looking for?"
+                onChangeText={onChangeLookingFor}
+                value={lookingFor}
                 style={{marginHorizontal:15, marginTop:20,  textAlign:'center'}}
             />
             <TextInput 
