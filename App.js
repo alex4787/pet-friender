@@ -7,7 +7,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import { Register } from './pages/register';
 import { Login } from './pages/login';
 import { AddDog } from './pages/dogInfo';
-import { DogMatches } from './pages/dogMatches';
+import { Match } from './pages/match';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as data from './assets/fake-data.json'
 import { Chat } from './pages/chat';
@@ -142,7 +142,7 @@ const HomeScreen = () => {
 			renderNavigationView={navigationView}
 		>
 			<Tab.Navigator>
-				<Tab.Screen name="Matches" component={DogMatches} />
+				<Tab.Screen name="Match" component={Match} />
 			</Tab.Navigator>
 		</DrawerLayoutAndroid>
 	)
