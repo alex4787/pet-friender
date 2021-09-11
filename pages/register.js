@@ -17,19 +17,22 @@ export const Register  = ({navigation}) => {
                 placeholder="Username"
                 onChangeText={onChangeUsername}
                 value={username}
+                style={{marginHorizontal:70, marginTop:120, textAlign:'center'}}
             />
             <TextInput 
                 placeholder="Email"
                 onChangeText={onChangeEmail}
                 value={email}
+                style={{marginHorizontal:70, marginTop:20, textAlign:'center'}}
             />
             <TextInput
                  secureTextEntry={true}
                  placeholder="Password"
                  onChangeText={onChangePassword}
                  value={password}
+                 style={{marginHorizontal:70, marginTop:20, textAlign:'center'}}
             />
-            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row', marginLeft:95, marginVertical:10, textAlign:'center'}}>
                 <IconButton
                     icon="plus"
                     color={Colors.red500}
@@ -44,7 +47,7 @@ export const Register  = ({navigation}) => {
                         disabled = false
                         navigation.navigate("Dog Information")
                     }}>
-                    <Text style={{marginVertical: 13}}>Add your dog</Text>
+                    <Text style={{marginVertical: 13}}>Add your dog information</Text>
                 </TouchableOpacity>    
             </View>
             <Button
@@ -53,6 +56,7 @@ export const Register  = ({navigation}) => {
 								onPress={() => {
 										navigation.navigate("Home")
 								}}
+                style={{marginHorizontal:15, marginVertical:10}}
             />
         </SafeAreaView>
     )

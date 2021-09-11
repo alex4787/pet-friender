@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, SafeAreaView, TextInput, Button, TouchableOpaci
 import { IconButton, Colors } from 'react-native-paper';
 
 
-export const AddDog  = () => {
+export const AddDog  = ({navigation}) => {
     const [name, onChangeName] = React.useState(null);
     const [breed, onChangeBreed] = React.useState(null);
     const [age, onChangeAge] = React.useState(null);
@@ -13,7 +13,7 @@ export const AddDog  = () => {
   
     return(
         <SafeAreaView>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row', marginHorizontal:75, marginTop:60}}>
                 <IconButton
                     icon="camera"
                     color={Colors.red500}
@@ -36,32 +36,42 @@ export const AddDog  = () => {
                 placeholder="Name"
                 onChangeText={onChangeName}
                 value={name}
+                style={{marginHorizontal:70, marginTop:20, textAlign:'center'}}
             />
             <TextInput 
                 placeholder="Breed"
                 onChangeText={onChangeBreed}
                 value={breed}
+                style={{marginHorizontal:70, marginTop:20,  textAlign:'center'}}
             />
             <TextInput 
                 placeholder="Sex"
                 onChangeText={onChangeSex}
                 value={sex}
+                style={{marginHorizontal:70, marginTop:20,  textAlign:'center'}}
             />
             <TextInput 
                 placeholder="Year of birth"
                 onChangeText={onChangeAge}
                 value={age}
+                style={{marginHorizontal:15, marginTop:20,  textAlign:'center'}}
             />
             <TextInput 
                 placeholder="Bio"
                 onChangeText={onChangeBio}
                 value={bio}
                 multiline={true}
+                style={{marginHorizontal:15, marginBottom:90, marginTop:20, textAlign:'center'}}
             />
         
             <Button
                 title="Done"
-            />
+                style={{marginHorizontal:15, marginVertical:10}}
+                onPress={()=>
+                    navigation.navigate("Register")}>
+
+                    </Button>
+        
         </SafeAreaView>
     )
   }
