@@ -26,7 +26,7 @@ const MATCH_LIST = [
       name: "Lomta",
 			id: 1,
 			profilePictureUri: "https://i.pinimg.com/736x/be/e2/c4/bee2c48ef1b4d655afbd9df08b4c6e09.jpg",
-			dogName: "Pickles",
+			dogName: "Meelo",
 			breed: "Bulldog",
 			age: "2018",
 			sex: "Male",
