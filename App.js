@@ -144,7 +144,7 @@ const HomeScreen = () => {
 		>
 			<Tab.Navigator>
 				<Tab.Screen name="Matches" component={DogMatches} options={{tabBarIcon:({ }) => (
-          <Ionicons name="flame-outlin" size={20} />
+          <Ionicons name="flame-outline" size={20} />
         )
 }} />
         <Tab.Screen name="Chat" component={Chat}  options={{tabBarIcon:({ }) => (
