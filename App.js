@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useRef, useState } from 'react';
-import { StyleSheet, Text, View, Image, Button, TouchableOpacity, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Image, Button, TouchableOpacity, Pressable, TouchableHighlight } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -13,6 +13,7 @@ import * as data from './assets/fake-data.json'
 import { Chat } from './pages/chat';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Calendar } from './pages/calendar';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
 
@@ -66,31 +67,40 @@ const HomeScreen = () => {
   const [value, setValue] = useState(dropdownItems[0].value);
   const [items, setItems] = useState(dropdownItems);
 
-  const navigationView = () => (
+	const SideBarLink = ({ onPress, text, icon }) => (
+		<Pressable onPress={onPress}>
+			<View style={{flexDirection: "row", alignItems: "center", marginLeft: 1, marginBottom: -10}}>
+				{icon}
+				<Text style={styles.paragraph}>{text}</Text>
+			</View>
+		</Pressable>
+	)
+
+  const navigationView = ({navigation}) => (
     <View style={[styles.navigationContainer]}>
 			<Image
 				style={styles.profilePicture}
 				source={{ uri: value.profilePictureUri }}
 			/>
-			<DropDownPicker
-				open={open}
-				value={value}
-				items={items}
-				setOpen={setOpen}
-				setValue={setValue}
-				setItems={setItems}
-				labelStyle={styles.h1}
-				dropDownContainerStyle={{ paddingLeft: -30, marginTop: 15, backgroundColor: "#eee" }}
-				style={{ marginLeft: 0, paddingLeft: 0, marginTop: 10, borderColor: "white" }}
-				disableBorderRadius={true}
-			/>
-			{/*
-			<View>
-				<Button>
-					<Text style={styles.h1}>{data.dogs[0].name}</Text>
-				</Button>
+			<View style={{zIndex: 10}}>
+				<DropDownPicker
+					open={open}
+					value={value}
+					items={items}
+					setOpen={setOpen}
+					setValue={setValue}
+					setItems={setItems}
+					labelStyle={styles.h1}
+					dropDownContainerStyle={{ paddingLeft: -30, marginTop: 15, backgroundColor: "#eee" }}
+					style={{ marginLeft: 0, paddingLeft: 0, marginTop: 10, borderColor: "white" }}
+					zIndex={3}
+					disableBorderRadius={true}
+				/>
 			</View>
-			*/}
+			<View style={{zIndex: -5}}>
+				<SideBarLink onPress={() => {navigation.navigate("DogProfile")}} text="Dog Profile" icon={<MaterialCommunityIcons name="dog" size={30} />} />
+				<SideBarLink onPress={() => {navigation.navigate("DogProfile")}} text="Settings" icon={<Ionicons name="cog-outline" size={30} />} />
+			</View>
     </View>
   );
 	const bottomTabBar = ({ state, descriptors, navigation }) => {
@@ -171,7 +181,7 @@ const MainScreen = ({ dog, navigation }) => {
 
 	return (
 		<Tab.Navigator screenOptions={{ headerLeft: (props) => <HeaderBar value={dog} {...props} /> }}>
-			<Tab.Screen name="Match" children={(props) => <Match addToMatchList={addToMatchList} {...props} />} options={{tabBarIcon:({ }) => (
+			<Tab.Screen name="Match" children={(props) => <Match matchList={matchList} addToMatchList={addToMatchList} {...props} />} options={{tabBarIcon:({ }) => (
 				<Ionicons name="flame-outline" size={20} />
 				)
 			}} />
