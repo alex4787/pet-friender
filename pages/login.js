@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import {Text, SafeAreaView, TextInput, Button, TouchableOpacity } from 'react-native';
+import {Text, SafeAreaView, TextInput, Button, TouchableOpacity, Image } from 'react-native';
 
 export const Login  = ({navigation}) => {
     const [email, onChangeEmail] = React.useState(null);
@@ -8,11 +8,14 @@ export const Login  = ({navigation}) => {
   
     return(
         <SafeAreaView>
+            <Image
+            source={require('../assets/doggo.png')}
+            style={{height:150, width:300, alignSelf:'center', marginTop:50}}/>
             <TextInput 
                 placeholder="Email"
                 onChangeText={onChangeEmail}
                 value={email}
-                style={{marginHorizontal:70, marginTop:190, textAlign:'center'}}
+                style={{marginHorizontal:70, marginTop:60, textAlign:'center'}}
             />
             <TextInput
                  secureTextEntry={true}
