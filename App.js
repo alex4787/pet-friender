@@ -23,31 +23,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
-const RECOMMENDATION_LIST = [
-    {
-      name: "Lomta",
-			id: 1,
-			profilePictureUri: "https://i.pinimg.com/736x/be/e2/c4/bee2c48ef1b4d655afbd9df08b4c6e09.jpg",
-			dogName: "Meelo",
-			breed: "Bulldog",
-			age: "2018",
-			sex: "Male",
-			bio: "Hey, Meelo is here! I'm a playful, energetic, good looking, pickle lover, charming bulldog. I'm looking for a female bulldog to start a family!",
-			lookingFor: "Mating"
-		},
-    {
-      name: 'Alex',
-      id: 2,
-      profilePictureUri: 'https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp',
-      dogName: 'Pickles',
-      breed: "Bulldog",
-			age: "2018",
-			sex: "Male",
-			bio: "Hey, Pickles is here! I'm a playful, energetic, good looking, pickle lover, charming bulldog. I'm looking for a female bulldog to start a family!",
-			lookingFor: "Mating"
-    },
-  ]
-
+const RECOMMENDATION_LIST = data.recommendation_list;
 
 export default function App() {
 
@@ -105,7 +81,7 @@ const HomeScreen = () => {
 									}}>
 										<View style={{flexDirection: "row", alignItems: "center", marginLeft: 1, marginBottom: -10}}>
 											<Avatar rounded source={{uri: dog.profilePictureUri}} />
-											<Text style={styles.paragraph}>{dog.name}</Text>
+											<Text style={styles.paragraph}>{dog.dogName}</Text>
 											{(value == dog) && <Ionicons name="checkmark-outline" />}
 										</View>
 									</Pressable>
@@ -120,7 +96,7 @@ const HomeScreen = () => {
 				onPress={() => setOpen(true)}
 			>
 				<View style={{flexDirection: "row", alignItems: "center", marginLeft: 1, marginBottom: -10}}>
-					<Text style={styles.h1}>{value.name}</Text>
+					<Text style={styles.h1}>{value.dogName}</Text>
 					<Ionicons name="chevron-down-outline" size={30} />
 				</View>
 			</Pressable>
@@ -191,7 +167,7 @@ const HomeScreen = () => {
 	return (
 		<Drawer.Navigator drawerContent={navigationView}>
       <Drawer.Screen name="Main" children={(props) => <MainScreen dog={value} {...props}/>} options={{ headerShown: false }} />
-      <Drawer.Screen name="DogProfile" children={(props) => <DogProfile dog={value} {...props}/>} options={{ title: value.name }} />
+      <Drawer.Screen name="DogProfile" children={(props) => <DogProfile dog={value} {...props}/>} options={{ title: value.dogName }} />
       <Drawer.Screen name="Calendar" component={Calendar} />
       <Drawer.Screen name="Map" component={Map} />
     </Drawer.Navigator>
@@ -257,6 +233,7 @@ const styles = StyleSheet.create({
 	h1: {
 		fontWeight: "bold",
 		fontSize: 30,
+    fontFamily: "",
 	},
 	drawerOpener: {
 		marginLeft: 15
@@ -295,7 +272,8 @@ const styles = StyleSheet.create({
 	textStyle: {
 		color: "white",
 		fontWeight: "bold",
-		textAlign: "center"
+		textAlign: "center",
+    fontFamily: "",
 	},
 	modalText: {
 		marginBottom: 15,

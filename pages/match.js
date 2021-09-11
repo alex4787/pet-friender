@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import * as data from '../assets/fake-data.json'
 import { DogCard } from '../components/dogCard'
-import { SafeAreaView, FlatList, StyleSheet, StatusBar, Text, View } from 'react-native';
+import { SafeAreaView, FlatList, StyleSheet, StatusBar, Text, View, ImageBackground } from 'react-native';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
@@ -13,9 +13,9 @@ export const Match = ({ recommendationList, addToMatchList }) => {
   const leftSwipeActions = () => {
     return (
       <View
-        style={{ flex: 1, backgroundColor: '#ccffbd', justifyContent: 'center' }}
+        style={{ flex: 1, backgroundColor: '#ccffbd', justifyContent: 'center', paddingLeft: 15 }}
       >
-        <Ionicons name="checkmark-outline" size={20} />
+        <Ionicons name="checkmark-outline" size={40} />
       </View>
     );
   };
@@ -24,13 +24,13 @@ export const Match = ({ recommendationList, addToMatchList }) => {
       <View
         style={{ flex: 1, backgroundColor: '#ff8303', justifyContent: 'center' }}
       >
-        <Ionicons name="close-outline" size={20} />
+        <Ionicons name="close-outline" size={40} style={{position: 'absolute', right: 0, marginRight: 15}} />
       </View>
     );
   };
   const swipeFromLeftOpen = () => {
     addToMatchList(recommendationList[dogIndex]);
-    alert(`${recommendationList[dogIndex].name} has been added!`);
+    alert(`${recommendationList[dogIndex].dogName} has been added!`);
     setDogIndex(prev => prev + 1);
     swipeable.current.close();
   };
@@ -49,15 +49,19 @@ export const Match = ({ recommendationList, addToMatchList }) => {
       onSwipeableRightOpen={swipeFromRightOpen}
       friction={friction}
     >
-      <View
-        style={{
-          paddingHorizontal: 30,
-          paddingVertical: 20,
-          backgroundColor: 'white',
-          height: 700,
-        }}
-      >
-        <DogCard dog={recommendationList[dogIndex]} setFriction={setFriction}/>
+      <View style={{backgroundColor: 'white'}}>
+        <ImageBackground
+          style={{
+            paddingHorizontal: 30,
+            paddingVertical: 20,
+            height: 700,
+          }}
+          imageStyle={{opacity: 0.6}}
+          source={{ uri: (dogIndex < recommendationList.length) && recommendationList[dogIndex].profilePictureUri }}
+          blurRadius={5}
+        >
+          <DogCard dog={recommendationList[dogIndex]} setFriction={setFriction}/>
+        </ImageBackground>
       </View>
     </Swipeable>
 	)
