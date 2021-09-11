@@ -2,9 +2,11 @@ import React from 'react';
 import MapView, {Marker} from 'react-native-maps';
 
 
-let markers = [{"lat":37.78825, "lon": -122.4324, "title": "rame", "description": "rameee"}]
+let markers = [{"lat":45.401100, "lon": -75.694719, "title": "Dog Trainer"},
+{"lat": 45.501100, "lon": -75.294719, "title": "Pet Store"},
+{"lat":45.351100, "lon": -75.994719, "title": "Vet Clinic"}]
+
 export const Map  = ({navigation}) => {
-      
     return(
             <MapView
                 style={{
@@ -23,7 +25,7 @@ export const Map  = ({navigation}) => {
                     }}
                 >
                 
-                    { markers.map((marker, index) => {
+                     { markers.map((marker, index) => (
                     <Marker
                         key={index}
                         coordinate = {{
@@ -32,8 +34,10 @@ export const Map  = ({navigation}) => {
                         }}
                         title={marker.title}
                         description={marker.description}
-                    /> }
-                    )}
+                        pinColor='blue'
+                    /> 
+                     ))}
+                    
               
             </MapView>
     )
