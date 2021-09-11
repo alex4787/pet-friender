@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useRef, useState } from 'react';
-import { StyleSheet, Text, View, Image, DrawerLayoutAndroid, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, Button, TouchableOpacity, Pressable } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -12,9 +12,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as data from './assets/fake-data.json'
 import { Chat } from './pages/chat';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+
 
 export default function App() {
 
@@ -33,19 +37,10 @@ export default function App() {
 };
 
 const HomeScreen = () => {
-	const drawer = useRef(null);
-  const [drawerPosition, setDrawerPosition] = useState("left");
-  const changeDrawerPosition = () => {
-    if (drawerPosition === "left") {
-      setDrawerPosition("right");
-    } else {
-      setDrawerPosition("left");
-    }
-  };
 	const dropdownItems = data.dogs.map(dog => (
 		{
 			label: dog.name,
-			value: dog.name,
+			value: dog,
 		}
 	))
 	const [open, setOpen] = useState(false);
@@ -56,7 +51,7 @@ const HomeScreen = () => {
     <View style={[styles.navigationContainer]}>
 			<Image
 				style={styles.profilePicture}
-				source={{ uri: data.dogs[0].profilePictureUri }}
+				source={{ uri: value.profilePictureUri }}
 			/>
 			<DropDownPicker
 				open={open}
@@ -66,9 +61,7 @@ const HomeScreen = () => {
 				setValue={setValue}
 				setItems={setItems}
 				labelStyle={styles.h1}
-				textStyle={{ paddingLeft: 0, marginLeft: 0, fontSize: 15, fontWeight: "normal" }}
-				containerStyle={{ paddingLeft: 0, marginLeft: 0, borderColor: "#fff" }}
-				dropDownContainerStyle={{ paddingLeft: 0, marginLeft: 0, borderColor: "white" }}
+				dropDownContainerStyle={{ paddingLeft: -30, marginTop: 15, backgroundColor: "#eee" }}
 				style={{ marginLeft: 0, paddingLeft: 0, marginTop: 10, borderColor: "white" }}
 				disableBorderRadius={true}
 			/>
@@ -136,23 +129,33 @@ const HomeScreen = () => {
 	}
 
 	return (
-		<DrawerLayoutAndroid
-			ref={drawer}
-			drawerWidth={300}
-			drawerPosition={drawerPosition}
-			renderNavigationView={navigationView}
-		>
-			<Tab.Navigator>
-				<Tab.Screen name="Match" component={Match} options={{tabBarIcon:({ }) => (
-          <Ionicons name="flame-outline" size={20} />
-					)
-				}} />
-        <Tab.Screen name="Chat" component={Chat}  options={{tabBarIcon:({ }) => (
-          <Ionicons name="chatbubbles-outline" size={20} />
-					)
-				}} />
-			</Tab.Navigator>
-		</DrawerLayoutAndroid>
+		<Drawer.Navigator drawerContent={navigationView}>
+      <Drawer.Screen name="Main" children={(props) => <MainScreen dog={value} {...props}/>} options={{ headerShown: false }} />
+    </Drawer.Navigator>
+	)
+}
+
+const MainScreen = ({ dog, navigation }) => {
+	const HeaderBar = ({ title, value }) => (
+		<Pressable style={styles.drawerOpener} onPress={() => navigation.openDrawer()}>
+			<Image
+				style={styles.miniProfilePicture}
+				source={{ uri: value.profilePictureUri }}
+			/>
+		</Pressable>
+	)
+
+	return (
+		<Tab.Navigator screenOptions={{ headerLeft: (props) => <HeaderBar value={dog} {...props} /> }}>
+			<Tab.Screen name="Match" component={Match} options={{title: "Match", tabBarIcon:({ }) => (
+				<Ionicons name="flame-outline" size={20} />
+				)
+			}} />
+			<Tab.Screen name="Chat" component={Chat}  options={{tabBarIcon:({ }) => (
+				<Ionicons name="chatbubbles-outline" size={20} />
+				)
+			}} />
+		</Tab.Navigator>
 	)
 }
 
@@ -177,9 +180,17 @@ const styles = StyleSheet.create({
 		height: 70,
 		borderRadius: 35,
 	},
+	miniProfilePicture: {
+		width: 30,
+		height: 30,
+		borderRadius: 15,
+	},
 	h1: {
 		fontWeight: "bold",
 		fontSize: 30,
+	},
+	drawerOpener: {
+		marginLeft: 15
 	}
 });
 
