@@ -11,7 +11,7 @@ import { DogMatches } from './pages/dogMatches';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as data from './assets/fake-data.json'
 import { Chat } from './pages/chat';
-//import Ionicons from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -143,9 +143,14 @@ const HomeScreen = () => {
 			renderNavigationView={navigationView}
 		>
 			<Tab.Navigator>
-				<Tab.Screen name="Matches" component={DogMatches} 
- />
-        <Tab.Screen name="Chat" component={Chat} />
+				<Tab.Screen name="Matches" component={DogMatches} options={{tabBarIcon:({ }) => (
+          <Ionicons name="flame-outlin" size={20} />
+        )
+}} />
+        <Tab.Screen name="Chat" component={Chat}  options={{tabBarIcon:({ }) => (
+          <Ionicons name="chatbubbles-outline" size={20} />
+        )
+}} />
 			</Tab.Navigator>
 		</DrawerLayoutAndroid>
 	)
