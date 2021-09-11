@@ -12,6 +12,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as data from './assets/fake-data.json'
 import { Chat } from './pages/chat';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Calendar } from './pages/calendar';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
