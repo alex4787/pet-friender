@@ -23,19 +23,26 @@ const Drawer = createDrawerNavigator();
 
 const RECOMMENDATION_LIST = [
     {
-      name: 'Lomta',
-      avatar_url: 'https://i.pinimg.com/736x/be/e2/c4/bee2c48ef1b4d655afbd9df08b4c6e09.jpg',
-      dog_name: 'Meelo',
-      playdate: false,
-      mating: true
-    },
+      name: "Lomta",
+			id: 1,
+			profilePictureUri: "https://i.pinimg.com/736x/be/e2/c4/bee2c48ef1b4d655afbd9df08b4c6e09.jpg",
+			dogName: "Pickles",
+			breed: "Bulldog",
+			age: "2018",
+			sex: "Male",
+			bio: "Hey, Pickles is here! I'm a playful, energetic, good looking, pickle lover, charming bulldog. I'm looking for a female bulldog to start a family!",
+			lookingFor: "Mating"
+		},
     {
       name: 'Alex',
-      avatar_url: 'https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp',
-      dog_name: 'Pickles',
-      playdate: true,
-      mating: false
-
+      id: 2,
+      profilePictureUri: 'https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp',
+      dogName: 'Pickles',
+      breed: "Bulldog",
+			age: "2018",
+			sex: "Male",
+			bio: "Hey, Pickles is here! I'm a playful, energetic, good looking, pickle lover, charming bulldog. I'm looking for a female bulldog to start a family!",
+			lookingFor: "Mating"
     },
   ]
 
@@ -100,10 +107,11 @@ const HomeScreen = () => {
 			<View style={{zIndex: -5}}>
 				<SideBarLink onPress={() => {navigation.navigate("Main")}} text="Home" icon={<Ionicons name="home-outline" size={30} />} />
 				<SideBarLink onPress={() => {navigation.navigate("DogProfile")}} text="Dog Profile" icon={<MaterialCommunityIcons name="dog" size={30} />} />
-        <SideBarLink onPress={() => {navigation.navigate("Calendar")}} text="My Calendar" icon={<Ionicons name="calendar" size={30} />} />
-        <SideBarLink onPress={() => {navigation.navigate("Map")}} text="Map" icon={<Ionicons name="map" size={30} />} />
+        <SideBarLink onPress={() => {navigation.navigate("Calendar")}} text="My Calendar" icon={<Ionicons name="calendar-outline" size={30} />} />
+        <SideBarLink onPress={() => {navigation.navigate("Map")}} text="Map" icon={<Ionicons name="map-outline" size={30} />} />
         <SideBarLink onPress={() => {navigation.navigate("DogProfile")}} text="Settings" icon={<Ionicons name="cog-outline" size={30} />} />
-			</View>
+        <SideBarLink onPress={() => {navigation.navigate("DogProfile")}} text="Log Out" icon={<Ionicons name="log-out-outline" size={30} />} />
+      </View>
     </View>
   );
 	const bottomTabBar = ({ state, descriptors, navigation }) => {

@@ -16,10 +16,14 @@ export const DogCard = ({ dog, setFriction }) => {
     <View style={styles.container}>
       <Image
         style={styles.profilePicture}
-        source={{ uri: dog.avatar_url }}
+        source={dog.profilePictureUri}
       />
-      <Text style={styles.h1}>{dog.dog_name}</Text>
-      <Text>{dog.name}</Text>
+      <Text style={styles.h1}>{dog.dogName}</Text>
+      <Text>Breed: {dog.breed}</Text>
+      <Text>Age: {2021 - dog.age}</Text>
+      <Text>Sex: {dog.sex}</Text>
+      <Text>Looking for: {dog.lookingFor}</Text>
+      <Text>{dog.bio}</Text>
     </View>
 	)
 }
