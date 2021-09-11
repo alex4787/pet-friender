@@ -3,11 +3,15 @@ import MapView, {Marker} from 'react-native-maps';
 
 
 let markers = [{"lat":45.401100, "lon": -75.694719, "title": "Dog Trainer"},
-{"lat": 45.501100, "lon": -75.294719, "title": "Pet Store"},
+{"lat": 45.407100, "lon": -75.294719, "title": "Pet Store"},
 {"lat":45.351100, "lon": -75.994719, "title": "Vet Clinic"},
 {"lat":45.407916,  "lon": -75.706141, "title": "Dog Trainer"},
-{"lat":45.413513, "lon": -75.694976, "title": "Vet Clinic"}]
+{"lat":45.413513, "lon": -75.694976, "title": "Vet Clinic"},
+{"lat": 45.421100, "lon": -75.699719, "title": "Pet Store"},
+{"lat":45.399100, "lon": -75.674719, "title": "Vet Clinic"}]
+
 let dogs = [{"lat":45.411245, "lon":  -75.706951, "title": "Vet Clinic", "name": "Meelo"}]
+
 
 
 export const Map  = ({navigation}) => {
@@ -22,8 +26,8 @@ export const Map  = ({navigation}) => {
                     right: 0
                 }}
                 initialRegion={{
-                    latitude: 37.78825,
-                    longitude: -122.4324,
+                    latitude: 45.411100,
+                    longitude: -75.684719,
                     latitudeDelta: 0.0922,
                     longitudeDelta: 0.0421,
                     }}

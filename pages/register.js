@@ -15,7 +15,7 @@ export const Register  = ({navigation}) => {
         <SafeAreaView>
                 <Image
                 source={require('../assets/doggo.png')}
-                style={{height:150, width:300, alignSelf:'center', marginTop:50}}/>
+                style={{height:270, width:370, alignSelf:'center', marginTop:50}}/>
             <TextInput 
                 placeholder="Username"
                 onChangeText={onChangeUsername}

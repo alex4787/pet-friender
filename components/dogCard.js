@@ -1,12 +1,22 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 
-export const DogCard = ({ dog }) => {
+export const DogCard = ({ dog, setFriction }) => {
+  if (!dog) {
+    setFriction(5);
+
+    return (
+      <View style={styles.container}>
+        <Text>No more recommendations.</Text>
+      </View>
+    )
+  }
+
 	return (
     <View style={styles.container}>
       <Image
         style={styles.profilePicture}
-        source={dog.profilePictureUri}
+        source={{ uri: dog.profilePictureUri }}
       />
       <Text style={styles.h1}>{dog.dogName}</Text>
       <Text>Breed: {dog.breed}</Text>
@@ -35,4 +45,10 @@ const styles = StyleSheet.create({
 		fontSize: 30,
     fontFamily: "",
 	},
+  profilePicture: {
+    height: 80,
+    width: 80,
+    borderRadius: 40,
+    marginBottom: 10,
+  }
 });

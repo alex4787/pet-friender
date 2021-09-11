@@ -10,8 +10,7 @@ export const Calendar  = ({navigation}) => {
            items={{
             '2021-09-09': [{name: 'Grooming time'}],
             '2021-09-08': [{name: 'Playdate with Jack'}],
-            '2021-09-10': [],
-            '2021-09-15': [{name: 'Playdate with Meelo'}, {name: 'Vet Appointment'}]
+            '2021-09-11': [{name: 'Playdate with Meelo'}, {name: 'Vet Appointment'}]
           }}
           //selected={'2021-09-10'}
           minDate={'2020-09-10'}
@@ -26,8 +25,7 @@ export const Calendar  = ({navigation}) => {
           markedDates={{
             '2021-09-09': {marked: true},
             '2021-09-08': {marked: true},
-            '2021-09-10': {marked: true},
-            '2021-09-15': {marked: true},
+            '2021-09-11': {marked: true},
           }}
           />
         </View>
