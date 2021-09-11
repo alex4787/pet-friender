@@ -99,10 +99,11 @@ const HomeScreen = () => {
 			</View>
 			<View style={{zIndex: -5}}>
 				<SideBarLink onPress={() => {navigation.navigate("DogProfile")}} text="Dog Profile" icon={<MaterialCommunityIcons name="dog" size={30} />} />
-        <SideBarLink onPress={() => {navigation.navigate("Calendar")}} text="My Calendar" icon={<Ionicons name="calendar" size={30} />} />
-        <SideBarLink onPress={() => {navigation.navigate("Map")}} text="Map" icon={<Ionicons name="map" size={30} />} />
+        <SideBarLink onPress={() => {navigation.navigate("Calendar")}} text="My Calendar" icon={<Ionicons name="calendar-outline" size={30} />} />
+        <SideBarLink onPress={() => {navigation.navigate("Map")}} text="Map" icon={<Ionicons name="map-outline" size={30} />} />
         <SideBarLink onPress={() => {navigation.navigate("DogProfile")}} text="Settings" icon={<Ionicons name="cog-outline" size={30} />} />
-			</View>
+        <SideBarLink onPress={() => {navigation.navigate("DogProfile")}} text="Log Out" icon={<Ionicons name="log-out-outline" size={30} />} />
+      </View>
     </View>
   );
 	const bottomTabBar = ({ state, descriptors, navigation }) => {
