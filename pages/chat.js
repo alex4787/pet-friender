@@ -21,16 +21,28 @@ export const Chat = ({ navigation, list }) =>{
 
 const ChatList = ({ navigation, list }) => (
   <View>
-    {
-      list.map((match, i) => (
+    {(list.length == 0) ?
+      <View style={styles.container}>
+        <Text style={{marginTop: 100}}>No matches yet!</Text>
+      </View>
+      : list.map((match, i) => (
         <ListItem key={i} bottomDivider onPress={() => navigation.navigate(match.name)}>
           <Avatar rounded source={{uri: match.profilePictureUri}} />
           <ListItem.Content>
             <ListItem.Title>{match.name}'s {match.dogName}</ListItem.Title>
-            <ListItem.Subtitle>{match.dogName}</ListItem.Subtitle>
+            <ListItem.Subtitle>{`${match.distance}`} km away</ListItem.Subtitle>
           </ListItem.Content>
         </ListItem>
       ))
     }
   </View>
 )
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
