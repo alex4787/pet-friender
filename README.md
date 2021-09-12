@@ -1,2 +1,15 @@
-To run our app, install Expo Go app on your mobile phone. 
-In the terminal first run ```npm install``` and then ```npm start```. After these, you will get a qr code, which you can scan and check out our app on your phone!
+# Corgeous
+## About
+**Coregous** ("corgi" + "gorgeous"), is a mobile app that provides a centralized experience for anything and everything dog-related, with a focus on matching dogs for playdates and mating.
+
+### Links
+- [Devpost](https://devpost.com/software/pet-friender)
+
+## Running Locally
+To run our app, install the **Expo Go** app on your mobile phone. 
+
+After cloning, open a terminal window in the main folder and run:
+1. ```npm install```
+2. ```npm start```
+
+A browser tab will then open which provides a QR code, which you can scan using your phone to check out our app!
